@@ -43,49 +43,30 @@
     flex-direction: column;
     padding: 20px;
     box-sizing: border-box;
+    z-index: 1000;
   }
   #lightbox img {
     max-width: 90%;
     max-height: 70%;
-    height: auto;   /* ← 縦横比を保つ */
-    width: auto;    /* ← 縦横比を保つ */
+    width: auto;       /* ← 縦横比を維持 */
+    height: auto;      /* ← 縦横比を維持 */
+    object-fit: contain; /* ← 余白ができても比率維持 */
     border-radius: 8px;
+    display: block;
   }
   #lightbox h3 {
     color: #fff;
     margin: 15px 0 5px;
     font-size: 18px;
+    text-align: center;
   }
   #lightbox p {
     color: #ccc;
     margin: 0;
     font-size: 14px;
+    text-align: center;
   }
 </style>
 
 <div id="lightbox">
-  <img src="" alt="">
-  <h3></h3>
-  <p></p>
-</div>
-
-<script>
-  const images = document.querySelectorAll('.gallery img');
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImg = lightbox.querySelector('img');
-  const lightboxTitle = lightbox.querySelector('h3');
-  const lightboxCaption = lightbox.querySelector('p');
-
-  images.forEach(img => {
-    img.addEventListener('click', () => {
-      lightbox.style.display = 'flex';
-      lightboxImg.src = img.src;
-      lightboxTitle.textContent = img.dataset.title;   // ← 作品タイトル
-      lightboxCaption.textContent = img.dataset.caption; // ← キャプション
-    });
-  });
-
-  lightbox.addEventListener('click', () => {
-    lightbox.style.display = 'none';
-  });
-</script>
+  <i
