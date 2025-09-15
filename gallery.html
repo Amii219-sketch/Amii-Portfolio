@@ -3,10 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Amii PORTFOLIO</title>
-  <meta name="description" content="Amii —透明水彩や顔彩などのアナログ画材を使用して物語を感じられるイラストを制作" />
-
-  <!-- Google Fonts 読み込み -->
+  <title>Amii PORTFOLIO - Gallery</title>
+  <meta name="description" content="Amii — 作品ギャラリー" />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
   <style>
@@ -77,18 +75,6 @@
       text-decoration: underline;
     }
 
-    @media (max-width: 600px) {
-      body {
-        font-size: 16px;
-      }
-      header h1 {
-        font-size: 20px;
-      }
-      .nav {
-        gap: 12px;
-      }
-    }
-
     /* --- ギャラリー部分 --- */
     .gallery {
       display: grid;
@@ -145,9 +131,14 @@
       font-size: 14px;
       text-align: center;
     }
+
+    @media (max-width: 600px) {
+      .gallery {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
   </style>
 </head>
-
 <body>
   <header>
     <h1>Amii PORTFOLIO</h1>
@@ -167,6 +158,7 @@
       <img src="images/work1.jpg" alt="優しい呼吸" data-title="優しい呼吸" data-caption="透明水彩 / 2024">
       <img src="images/work2.jpg" alt="百万年の孤独" data-title="百万年の孤独" data-caption="透明水彩 / 2025">
       <img src="images/work3.jpg" alt="胡蝶の夢" data-title="胡蝶の夢" data-caption="透明水彩 / 2025">
+      <img src="images/work4.jpg" alt="帰郷" data-title="帰郷" data-caption="顔彩 / 2025">
     </div>
   </main>
 
@@ -176,14 +168,19 @@
     <p></p>
   </div>
 
+  <footer>
+    <p>© <span id="year"></span> Amii</p>
+  </footer>
+
   <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
     const images = document.querySelectorAll('.gallery img');
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = lightbox.querySelector('img');
     const lightboxTitle = lightbox.querySelector('h3');
     const lightboxCaption = lightbox.querySelector('p');
 
-    // 画像クリックで表示
     images.forEach(img => {
       img.addEventListener('click', () => {
         lightbox.style.display = 'flex';
@@ -193,7 +190,6 @@
       });
     });
 
-    // 背景クリックで閉じる
     lightbox.addEventListener('click', (e) => {
       if (e.target === e.currentTarget) {
         lightbox.style.display = 'none';
