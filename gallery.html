@@ -75,20 +75,20 @@
       text-decoration: underline;
     }
 
-    /* --- ギャラリー部分 --- */
+    /* --- ギャラリー部分（Pinterest風） --- */
     .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 20px;
+      column-count: 3;      /* PCでは3列 */
+      column-gap: 20px;     /* 列間の余白 */
       margin-top: 20px;
     }
 
     .gallery img {
       width: 100%;
-      height: auto;
-      cursor: pointer;
+      margin-bottom: 20px;
       border-radius: 8px;
+      cursor: pointer;
       transition: transform 0.2s;
+      display: block; /* ← 隙間防止 */
     }
 
     .gallery img:hover {
@@ -134,7 +134,8 @@
 
     @media (max-width: 600px) {
       .gallery {
-        grid-template-columns: repeat(2, 1fr);
+        column-count: 2;  /* スマホは2列 */
+        column-gap: 10px;
       }
     }
   </style>
@@ -159,6 +160,7 @@
       <img src="images/work2.jpg" alt="百万年の孤独" data-title="百万年の孤独" data-caption="透明水彩 / 2025">
       <img src="images/work3.jpg" alt="胡蝶の夢" data-title="胡蝶の夢" data-caption="透明水彩 / 2025">
       <img src="images/work4.jpg" alt="帰郷" data-title="帰郷" data-caption="顔彩 / 2025">
+      <img src="images/work5.jpg" alt="すべて私の記憶" data-title="すべて私の記憶" data-caption="透明水彩 / 2025">
     </div>
   </main>
 
