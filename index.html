@@ -8,12 +8,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
   <style>
-    .header-logo {
-      height: 100px; /* ロゴの縦サイズ */
-      vertical-align: middle;
-      margin-left: 10px; /* タイトルとの間隔 */
-    }
-
     body {
       margin: 0;
       font-family: "Noto Sans JP", "Inter", sans-serif;
@@ -28,10 +22,22 @@
       padding: 0 20px;
     }
 
-    header h1 {
+    /* タイトルとロゴを横並びに */
+    .header-title {
+      display: flex;
+      align-items: center;
+      gap: 10px; /* タイトルとロゴの間隔 */
+    }
+
+    .header-title h1 {
       font-size: 30px;
       margin: 0;
       font-weight: 600;
+      white-space: nowrap; /* スマホでも折り返さない */
+    }
+
+    .header-logo {
+      height: 60px; /* ロゴの縦サイズ（少し小さめに調整） */
     }
 
     nav ul {
@@ -40,7 +46,9 @@
       margin: 20px 0;
       display: flex;
       gap: 20px;
+      flex-wrap: wrap;
     }
+
     nav a {
       text-decoration: none;
       color: #333;
@@ -100,9 +108,11 @@
 </head>
 <body>
   <header>
-    <h1>Amii PORTFOLIO
+    <div class="header-title">
+      <h1>Amii PORTFOLIO</h1>
       <img src="images/logo.png" alt="飾りイラスト" class="header-logo">
-    </h1>
+    </div>
+
     <nav>
       <ul>
         <li><a href="index.html">home</a></li>
