@@ -1,30 +1,3 @@
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 20px;
-  margin-top: 20px;
-}
-
-.gallery img {
-  width: 100%;
-  height: auto;
-  cursor: pointer;
-  border-radius: 8px;
-  transition: transform 0.2s;
-}
-
-.gallery img:hover {
-  transform: scale(1.02);
-}
-
-/* スマホ用：小さめの画像を2列 or 3列にする */
-@media (max-width: 600px) {
-  .gallery {
-    grid-template-columns: repeat(2, 1fr); /* ← 2列表示 */
-    gap: 12px; /* スマホでは余白少なめ */
-  }
-}
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
