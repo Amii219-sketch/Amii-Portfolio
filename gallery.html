@@ -50,7 +50,7 @@
     max-height: 70%;
     width: auto;       /* ← 縦横比を維持 */
     height: auto;      /* ← 縦横比を維持 */
-    object-fit: contain; /* ← 余白ができても比率維持 */
+    object-fit: contain; /* ← 枠に収めつつ比率維持 */
     border-radius: 8px;
     display: block;
   }
@@ -69,4 +69,32 @@
 </style>
 
 <div id="lightbox">
-  <i
+  <img src="" alt="">
+  <h3></h3>
+  <p></p>
+</div>
+
+<script>
+  const images = document.querySelectorAll('.gallery img');
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = lightbox.querySelector('img');
+  const lightboxTitle = lightbox.querySelector('h3');
+  const lightboxCaption = lightbox.querySelector('p');
+
+  // 画像クリックで表示
+  images.forEach(img => {
+    img.addEventListener('click', () => {
+      lightbox.style.display = 'flex';
+      lightboxImg.src = img.src;
+      lightboxTitle.textContent = img.dataset.title;
+      lightboxCaption.textContent = img.dataset.caption;
+    });
+  });
+
+  // 背景をクリックしたら閉じる
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === e.currentTarget) {
+      lightbox.style.display = 'none';
+    }
+  });
+</script>
