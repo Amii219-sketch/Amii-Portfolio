@@ -28,10 +28,20 @@
       font-weight: 600;
     }
 
-    header p {
-      font-size: 14px;
-      color: #555;
-      margin: 6px 0 0;
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0;
+      display: flex;
+      gap: 20px;
+    }
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+    }
+    nav a:hover {
+      text-decoration: underline;
     }
 
     main {
@@ -85,38 +95,37 @@
 <body>
   <header>
     <h1>Amii PORTFOLIO</h1>
-
-    
-    <p>京都在住イラストレーター</p>
-    <p>2019 個展「いちばんたいせつなことは、めにみえない」</p>
-    <p>2022 個展「君のいる星」</p>
-    <p>2025 個展「好日」</p>
-    <p>透明水彩や顔彩などのアナログ画材を使用して物語を感じられるイラストを制作</p>
+    <nav>
+      <ul>
+        <li><a href="index.html">home</a></li>
+        <li><a href="profile.html">profile</a></li>
+        <li><a href="gallery.html">gallery</a></li>
+        <li><a href="contact.html">contact</a></li>
+      </ul>
+    </nav>
   </header>
 
   <main>
     <!-- 作品1 -->
     <div class="work">
-      <img src="images/work1.jpg" alt="作品1">
+      <img src="images/work1.jpg" alt="透明水彩作品『優しい呼吸』">
       <h2>優しい呼吸</h2>
       <p>透明水彩 / 2024</p>
     </div>
 
     <!-- 作品2 -->
     <div class="work">
-      <img src="images/work2.jpg" alt="作品2">
+      <img src="images/work2.jpg" alt="透明水彩作品『百万年の孤独』">
       <h2>百万年の孤独</h2>
       <p>透明水彩 / 2025</p>
     </div>
 
     <!-- 作品3 -->
     <div class="work">
-      <img src="images/work3.jpg" alt="作品3">
+      <img src="images/work3.jpg" alt="透明水彩作品『胡蝶の夢』">
       <h2>胡蝶の夢</h2>
       <p>透明水彩 / 2025</p>
     </div>
-
-    <!-- ↑ 作品を増やしたいときはこのブロックをコピーしていけばOK -->
   </main>
 
   <footer>
