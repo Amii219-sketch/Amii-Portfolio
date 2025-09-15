@@ -77,18 +77,6 @@
       text-decoration: underline;
     }
 
-    @media (max-width: 600px) {
-      body {
-        font-size: 16px;
-      }
-      header h1 {
-        font-size: 20px;
-      }
-      .nav {
-        gap: 12px;
-      }
-    }
-
     /* --- ギャラリー部分 --- */
     .gallery {
       display: grid;
@@ -145,6 +133,22 @@
       font-size: 14px;
       text-align: center;
     }
+
+    /* --- スマホ用（600px以下） --- */
+    @media (max-width: 600px) {
+      body {
+        font-size: 16px;
+      }
+      header h1 {
+        font-size: 20px;
+      }
+      .nav {
+        gap: 12px;
+      }
+      .gallery {
+        grid-template-columns: repeat(2, 1fr); /* ← スマホでは2列固定 */
+      }
+    }
   </style>
 </head>
 
@@ -188,4 +192,17 @@
       img.addEventListener('click', () => {
         lightbox.style.display = 'flex';
         lightboxImg.src = img.src;
-        lightboxTitle.textContent = img.dataset.titl
+        lightboxTitle.textContent = img.dataset.title;
+        lightboxCaption.textContent = img.dataset.caption;
+      });
+    });
+
+    // 背景クリックで閉じる
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === e.currentTarget) {
+        lightbox.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>
