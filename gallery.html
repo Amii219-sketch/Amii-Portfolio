@@ -18,33 +18,12 @@
       margin: 0 auto;
       padding: 0 16px;
     }
-    header {
-      margin: 40px auto;
-    }
-    header h1 {
-      font-size: 22px;
-      margin: 0;
-      font-weight: 600;
-    }
-    nav {
-      margin-top: 10px;
-    }
-    .nav {
-      list-style: none;
-      padding: 0;
-      display: flex;
-      gap: 20px;
-      font-size: 14px;
-    }
-    .nav a {
-      text-decoration: none;
-      color: #333;
-      font-weight: 500;
-      transition: color 0.2s;
-    }
-    .nav a:hover {
-      color: #666;
-    }
+    header { margin: 40px auto; }
+    header h1 { font-size: 22px; margin: 0; font-weight: 600; }
+    nav { margin-top: 10px; }
+    .nav { list-style: none; padding: 0; display: flex; gap: 20px; font-size: 14px; }
+    .nav a { text-decoration: none; color: #333; font-weight: 500; transition: color 0.2s; }
+    .nav a:hover { color: #666; }
 
     .gallery {
       display: grid;
@@ -58,17 +37,13 @@
       cursor: pointer;
       border-radius: 8px;
       transition: transform 0.2s;
+      display: block;
     }
-    .gallery img:hover {
-      transform: scale(1.02);
-    }
+    .gallery img:hover { transform: scale(1.02); }
 
     /* スマホ用2列 */
     @media (max-width: 600px) {
-      .gallery {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
-      }
+      .gallery { grid-template-columns: repeat(2, 1fr); gap: 12px; }
     }
 
     /* ライトボックス */
@@ -76,7 +51,7 @@
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background: rgba(0,0,0,0.8);
+      background: rgba(0,0,0,0.85);
       display: none;
       justify-content: center;
       align-items: center;
@@ -88,20 +63,28 @@
     #lightbox img {
       max-width: 90%;
       max-height: 70%;
-      object-fit: contain;
+      object-fit: contain; /* 縦横比を保つ */
       border-radius: 8px;
     }
-    #lightbox h3 {
+    #lightbox h3 { color: #fff; margin: 15px 0 5px; font-size: 18px; text-align: center; }
+    #lightbox p { color: #ccc; margin: 0; font-size: 14px; text-align: center; }
+
+    /* デバッグ小窓（可視化） */
+    #debug {
+      position: fixed;
+      right: 10px;
+      top: 10px;
+      background: rgba(0,0,0,0.6);
       color: #fff;
-      margin: 15px 0 5px;
-      font-size: 18px;
-      text-align: center;
-    }
-    #lightbox p {
-      color: #ccc;
-      margin: 0;
-      font-size: 14px;
-      text-align: center;
+      font-family: monospace;
+      font-size: 12px;
+      padding: 8px;
+      border-radius: 6px;
+      max-width: 300px;
+      max-height: 120px;
+      overflow: auto;
+      z-index: 2000;
+      white-space: pre-wrap;
     }
   </style>
 </head>
@@ -120,57 +103,118 @@
 
   <main>
     <h2>Gallery</h2>
-    <!-- ここは空でOK！JSが自動で作品を入れる -->
+    <!-- ここは空にしておく（JSが自動で生成） -->
     <div class="gallery"></div>
   </main>
 
-  <div id="lightbox">
+  <div id="lightbox" aria-hidden="true" role="dialog">
     <img src="" alt="">
     <h3></h3>
     <p></p>
   </div>
 
+  <div id="debug" aria-hidden="false">debug:\n</div>
+
   <script>
-    // 作品データ（ここに追加するだけでOK！）
-    const works = [
-      { src: "images/work1.jpg", title: "優しい呼吸", caption: "透明水彩 / 2024" },
-      { src: "images/work2.jpg", title: "百万年の孤独", caption: "透明水彩 / 2025" },
-      { src: "images/work3.jpg", title: "胡蝶の夢", caption: "透明水彩 / 2025" },
-      { src: "images/work4.jpg", title: "星降る夜", caption: "透明水彩 / 2025" }
-    ];
+    // 小さなデバッグヘルパー
+    function pushDebug(msg) {
+      console.log(msg);
+      const d = document.getElementById('debug');
+      if (d) d.textContent += msg + '\n';
+    }
 
-    const gallery = document.querySelector('.gallery');
-
-    // ギャラリー生成
-    works.forEach(work => {
-      const img = document.createElement('img');
-      img.src = work.src;
-      img.alt = work.title;
-      img.dataset.title = work.title;
-      img.dataset.caption = work.caption;
-      gallery.appendChild(img);
-    });
-
-    // ライトボックス機能
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = lightbox.querySelector('img');
-    const lightboxTitle = lightbox.querySelector('h3');
-    const lightboxCaption = lightbox.querySelector('p');
-
-    gallery.addEventListener('click', (e) => {
-      if (e.target.tagName === 'IMG') {
-        lightbox.style.display = 'flex';
-        lightboxImg.src = e.target.src;
-        lightboxTitle.textContent = e.target.dataset.title;
-        lightboxCaption.textContent = e.target.dataset.caption;
+    // DOM ができてから実行（要素取得安全のため）
+    window.addEventListener('DOMContentLoaded', () => {
+      try {
+        initGallery();
+      } catch (err) {
+        pushDebug('INIT ERROR: ' + err.message);
+        console.error(err);
       }
     });
 
-    lightbox.addEventListener('click', (e) => {
-      if (e.target === e.currentTarget) {
-        lightbox.style.display = 'none';
+    function initGallery() {
+      pushDebug('initGallery start');
+
+      // --- 作品データ（ここに追加するだけ） ---
+      const works = [
+        { src: "images/work1.jpg", title: "優しい呼吸", caption: "透明水彩 / 2024" },
+        { src: "images/work2.jpg", title: "百万年の孤独", caption: "透明水彩 / 2025" },
+        { src: "images/work3.jpg", title: "胡蝶の夢", caption: "透明水彩 / 2025" },
+        { src: "images/work4.jpg", title: "星降る夜", caption: "透明水彩 / 2025" }
+      ];
+
+      const gallery = document.querySelector('.gallery');
+      if (!gallery) {
+        pushDebug('ERROR: .gallery 要素が見つかりません');
+        return;
       }
-    });
+
+      // **重複追加を防止**：すでに中身がある場合は一旦クリア
+      if (gallery.children.length > 0) {
+        pushDebug('notice: gallery has children (clearing existing content)');
+        gallery.innerHTML = '';
+      }
+
+      const frag = document.createDocumentFragment();
+      works.forEach((work, i) => {
+        const img = document.createElement('img');
+        img.src = work.src;
+        img.alt = work.title;
+        img.dataset.title = work.title;
+        img.dataset.caption = work.caption;
+
+        // 画像読み込み失敗のデバッグ表示
+        img.addEventListener('error', () => {
+          pushDebug('ERROR loading: ' + work.src + ' (確認: ファイル名・パス・大文字小文字)');
+          img.style.opacity = '0.5';
+          img.title = '画像が読み込めません: ' + work.src;
+        });
+
+        // 成功時にはログ（任意）
+        img.addEventListener('load', () => {
+          pushDebug('loaded: ' + work.src);
+        });
+
+        frag.appendChild(img);
+      });
+
+      gallery.appendChild(frag);
+      pushDebug('Appended ' + works.length + ' works to gallery');
+
+      // ライトボックス
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = lightbox.querySelector('img');
+      const lightboxTitle = lightbox.querySelector('h3');
+      const lightboxCaption = lightbox.querySelector('p');
+
+      gallery.addEventListener('click', (e) => {
+        if (e.target && e.target.tagName === 'IMG') {
+          lightbox.style.display = 'flex';
+          lightbox.setAttribute('aria-hidden', 'false');
+          lightboxImg.src = e.target.src;
+          lightboxImg.alt = e.target.alt || '';
+          lightboxTitle.textContent = e.target.dataset.title || '';
+          lightboxCaption.textContent = e.target.dataset.caption || '';
+        }
+      });
+
+      // 背景クリックで閉じる
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === e.currentTarget) {
+          lightbox.style.display = 'none';
+          lightbox.setAttribute('aria-hidden', 'true');
+        }
+      });
+
+      // Esc で閉じる
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          lightbox.style.display = 'none';
+          lightbox.setAttribute('aria-hidden', 'true');
+        }
+      });
+    }
   </script>
 </body>
 </html>
