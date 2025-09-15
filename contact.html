@@ -1,7 +1,39 @@
-<form action="https://formspree.io/f/xxxxxx" method="POST">
-  <label>お名前:<br><input type="text" name="name" required></label><br>
-  <label>メールアドレス:<br><input type="email" name="email" required></label><br>
-  <label>メッセージ:<br><textarea name="message" required></textarea></label><br>
-  <button type="submit">送信</button>
-</form>
+<main>
+  <h2>Contact</h2>
+  <form action="mailto:amii.world219@gmail.com" method="post" enctype="text/plain">
+    <label>お名前<br>
+      <input type="text" name="name" required>
+    </label><br><br>
+    <label>メールアドレス<br>
+      <input type="email" name="email" required>
+    </label><br><br>
+    <label>メッセージ<br>
+      <textarea name="message" rows="6" required></textarea>
+    </label><br><br>
+    <button type="submit">送信</button>
+  </form>
+</main>
 
+<style>
+  form {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    font-size: 14px;
+  }
+  button {
+    padding: 10px 20px;
+    background: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  button:hover {
+    background: #555;
+  }
+</style>
