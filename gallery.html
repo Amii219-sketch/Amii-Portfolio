@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Amii PORTFOLIO - Gallery</title>
-  <meta name="description" content="Amii — 作品ギャラリー" />
+  <title>Amii PORTFOLIO | Gallery</title>
+  <meta name="description" content="Amii — 透明水彩や顔彩を使った作品ギャラリー" />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
   <style>
@@ -88,7 +88,7 @@
       border-radius: 8px;
       cursor: pointer;
       transition: transform 0.2s;
-      display: block; /* ← 隙間防止 */
+      display: block;
     }
 
     .gallery img:hover {
@@ -132,10 +132,17 @@
       text-align: center;
     }
 
+    /* --- レスポンシブ対応 --- */
     @media (max-width: 600px) {
       .gallery {
         column-count: 2;  /* スマホは2列 */
         column-gap: 10px;
+      }
+    }
+
+    @media (min-width: 900px) {
+      header h1 {
+        font-size: 28px; /* PCでは大きめ */
       }
     }
   </style>
@@ -156,13 +163,13 @@
   <main>
     <h2>Gallery</h2>
     <div class="gallery">
-      <img src="images/work1.jpg" alt="優しい呼吸" data-title="優しい呼吸" data-caption="透明水彩 / 2024">
-      <img src="images/work2.jpg" alt="百万年の孤独" data-title="百万年の孤独" data-caption="透明水彩 / 2025">
-      <img src="images/work3.jpg" alt="胡蝶の夢" data-title="胡蝶の夢" data-caption="透明水彩 / 2025">
-      <img src="images/work4.jpg" alt="帰郷" data-title="帰郷" data-caption="顔彩 / 2025">
-      <img src="images/work5.jpg" alt="すべて私の記憶" data-title="すべて私の記憶" data-caption="透明水彩 / 2025">
-      <img src="images/work6.jpg?v=2" alt="この悲しみを愛とは呼ばない" data-title="この悲しみを愛とは呼ばない" data-caption="透明水彩 / 2025">
-      <img src="images/work7.jpg" alt="好日" data-title="好日" data-caption="顔彩 / 2024">
+      <img src="images/work1.jpg" alt="透明水彩作品『優しい呼吸』" data-title="優しい呼吸" data-caption="透明水彩 / 2024" loading="lazy">
+      <img src="images/work2.jpg" alt="透明水彩作品『百万年の孤独』" data-title="百万年の孤独" data-caption="透明水彩 / 2025" loading="lazy">
+      <img src="images/work3.jpg" alt="透明水彩作品『胡蝶の夢』" data-title="胡蝶の夢" data-caption="透明水彩 / 2025" loading="lazy">
+      <img src="images/work4.jpg" alt="顔彩作品『帰郷』" data-title="帰郷" data-caption="顔彩 / 2025" loading="lazy">
+      <img src="images/work5.jpg" alt="透明水彩作品『すべて私の記憶』" data-title="すべて私の記憶" data-caption="透明水彩 / 2025" loading="lazy">
+      <img src="images/work6.jpg?v=2" alt="透明水彩作品『この悲しみを愛とは呼ばない』" data-title="この悲しみを愛とは呼ばない" data-caption="透明水彩 / 2025" loading="lazy">
+      <img src="images/work7.jpg" alt="顔彩作品『好日』" data-title="好日" data-caption="顔彩 / 2024" loading="lazy">
     </div>
   </main>
 
@@ -196,6 +203,13 @@
 
     lightbox.addEventListener('click', (e) => {
       if (e.target === e.currentTarget) {
+        lightbox.style.display = 'none';
+      }
+    });
+
+    // Escキーで閉じる
+    document.addEventListener('keydown', (e) => {
+      if (e.key === "Escape") {
         lightbox.style.display = 'none';
       }
     });
