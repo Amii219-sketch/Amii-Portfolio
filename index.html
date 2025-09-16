@@ -22,34 +22,19 @@
       padding: 0 20px;
     }
 
-    /* タイトルとロゴを横並びに */
     .header-title {
       display: flex;
       align-items: center;
-      gap: 10px; /* タイトルとロゴの間隔 */
+      gap: 10px;
     }
-header h1 {
-  font-size: 22px;
-  margin: 0;
-  font-weight: 600;
-}
-
-/* 画面幅 768px以上（タブレット〜PC）は大きくする */
-@media (min-width: 768px) {
-  header h1 {
-    font-size: 32px;
-  }
-}
-
     .header-title h1 {
       font-size: 30px;
       margin: 0;
       font-weight: 600;
-      white-space: nowrap; /* スマホでも折り返さない */
+      white-space: nowrap;
     }
-
     .header-logo {
-      height: 60px; /* ロゴの縦サイズ（少し小さめに調整） */
+      height: 60px;
     }
 
     nav ul {
@@ -59,8 +44,8 @@ header h1 {
       display: flex;
       gap: 20px;
       flex-wrap: wrap;
+      font-size: 14px;
     }
-
     nav a {
       text-decoration: none;
       color: #333;
@@ -76,27 +61,24 @@ header h1 {
       padding: 0 20px 60px;
     }
 
-    .work {
-      margin-bottom: 60px;
-    }
-
-    .work img {
+    /* スライドショー */
+    .slideshow {
+      position: relative;
       width: 100%;
+      max-width: 900px;
       height: auto;
-      display: block;
-      margin-bottom: 12px;
+      overflow: hidden;
     }
-
-    .work h2 {
-      font-size: 16px;
-      margin: 0;
-      font-weight: 500;
+    .slideshow img {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
     }
-
-    .work p {
-      font-size: 14px;
-      margin: 4px 0 0;
-      color: #555;
+    .slideshow img.active {
+      opacity: 1;
+      position: relative;
     }
 
     footer {
@@ -106,13 +88,11 @@ header h1 {
       padding: 30px 0;
       border-top: 1px solid #eee;
     }
-
     footer a {
       color: #555;
       text-decoration: none;
       margin: 0 8px;
     }
-
     footer a:hover {
       text-decoration: underline;
     }
@@ -124,7 +104,6 @@ header h1 {
       <h1>Amii PORTFOLIO</h1>
       <img src="images/logo.png" alt="飾りイラスト" class="header-logo">
     </div>
-
     <nav>
       <ul>
         <li><a href="index.html">home</a></li>
@@ -136,9 +115,11 @@ header h1 {
   </header>
 
   <main>
-    <!-- 作品1 -->
-    <div class="work">
-      <img src="images/work1.jpg" alt="透明水彩作品『優しい呼吸』">
+    <!-- スライドショー -->
+    <div class="slideshow">
+      <img src="images/work1.jpg" class="active" alt="優しい呼吸">
+      <img src="images/work18.jpg" alt="作品18">
+      <img src="images/work3.jpg" alt="胡蝶の夢">
     </div>
   </main>
 
@@ -153,6 +134,15 @@ header h1 {
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // スライドショー
+    const slides = document.querySelectorAll('.slideshow img');
+    let current = 0;
+    setInterval(() => {
+      slides[current].classList.remove('active');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('active');
+    }, 7000);
   </script>
 </body>
 </html>
