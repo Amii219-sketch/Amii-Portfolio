@@ -7,26 +7,107 @@
   <meta name="description" content="Amii — お問い合わせフォーム" />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
-    body {margin:0;font-family:"Noto Sans JP","Inter",sans-serif;background:#fff;color:#111;line-height:1.7;}
+    body {
+      margin: 0;
+      font-family: "Noto Sans JP","Inter",sans-serif;
+      background: #fff;
+      color: #111;
+      line-height: 1.7;
+    }
 
-    header {max-width:900px;margin:40px auto;padding:0 20px;}
-    .header-title {display:flex;align-items:center;gap:10px;}
-    .header-title h1 {font-size:30px;margin:0;font-weight:600;white-space:nowrap;}
-    .header-logo {height:60px;}
-    nav ul {list-style:none;padding:0;margin:20px 0;display:flex;gap:20px;flex-wrap:wrap;font-size:14px;}
-    nav a {text-decoration:none;color:#333;font-weight:500;}
-    nav a:hover {text-decoration:underline;}
+    header {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    .header-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .header-title h1 {
+      font-size: 30px;
+      margin: 0;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .header-logo {
+      height: 60px;
+    }
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      font-size: 14px;
+    }
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
 
-    main {max-width:900px;margin:0 auto;padding:0 20px 60px;}
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 20px 60px;
+    }
 
-    form {max-width:500px;margin:0 auto;}
-    input, textarea {width:100%;padding:10px;margin-top:5px;font-size:14px;border:1px solid #ccc;border-radius:4px;}
-    button {padding:10px 20px;background:#333;color:#fff;border:none;cursor:pointer;margin-top:10px;border-radius:4px;}
-    button:hover {background:#555;}
+    /* フォーム */
+    form {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box; /* ← はみ出し防止 */
+    }
+    button {
+      padding: 10px 20px;
+      background: #333;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      margin-top: 10px;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+    button:hover {
+      background: #555;
+    }
 
-    footer {text-align:center;font-size:13px;color:#666;padding:30px 0;border-top:1px solid #eee;}
-    footer a {color:#555;text-decoration:none;margin:0 8px;}
-    footer a:hover {text-decoration:underline;}
+    /* スマホ向け調整 */
+    @media (max-width: 600px) {
+      .header-title h1 { font-size: 24px; }
+      input, textarea { font-size: 16px; } /* 入力欄は見やすく */
+      /* ← ボタンは幅そのまま、小さめのまま */
+    }
+
+    footer {
+      text-align: center;
+      font-size: 13px;
+      color: #666;
+      padding: 30px 0;
+      border-top: 1px solid #eee;
+    }
+    footer a {
+      color: #555;
+      text-decoration: none;
+      margin: 0 8px;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
