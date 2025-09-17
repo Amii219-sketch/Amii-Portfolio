@@ -20,36 +20,35 @@
 
     main {max-width:900px;margin:0 auto;padding:0 20px 60px;}
 
-    /* Masonry風ギャラリー */
+    /* --- Masonry風ギャラリー（常に2列） --- */
     .gallery {
       display: flex;
       gap: 20px;
       align-items: flex-start;
+      justify-content: center;
+      margin-top: 20px;
     }
     .column {
       flex: 1;
+      max-width: 50%; /* 常に2列固定 */
       display: flex;
       flex-direction: column;
       gap: 20px;
     }
-    .gallery img {
+    .column img {
       width: 100%;
       border-radius: 8px;
       cursor: pointer;
       transition: transform 0.2s;
       display: block;
     }
-    .gallery img:hover {transform:scale(1.02);}
+    .column img:hover {transform:scale(1.02);}
 
     /* ライトボックス */
     #lightbox {position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);display:none;justify-content:center;align-items:center;flex-direction:column;padding:20px;box-sizing:border-box;z-index:1000;}
     #lightbox img {max-width:90%;max-height:70%;object-fit:contain;border-radius:8px;display:block;}
     #lightbox h3 {color:#fff;margin:15px 0 5px;font-size:18px;text-align:center;}
     #lightbox p {color:#ccc;margin:0;font-size:14px;text-align:center;}
-
-    @media (max-width:600px) {
-      .gallery {flex-direction: column;}
-    }
 
     footer {text-align:center;font-size:13px;color:#666;padding:30px 0;border-top:1px solid #eee;}
     footer a {color:#555;text-decoration:none;margin:0 8px;}
@@ -93,7 +92,12 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    const images = [
+    const gallery = document.getElementById("gallery");
+    const col1 = document.getElementById("col1");
+    const col2 = document.getElementById("col2");
+
+    // 画像データ（作品リスト）
+    const items = [
       {src:"images/work1.jpg", title:"優しい呼吸", caption:"透明水彩 / 2024", year:2024},
       {src:"images/work2.jpg", title:"百万年の孤独", caption:"透明水彩 / 2025", year:2025},
       {src:"images/work3.jpg", title:"胡蝶の夢", caption:"透明水彩 / 2025", year:2025},
@@ -110,46 +114,44 @@
       {src:"images/work14.jpg", title:"木星と猫", caption:"透明水彩 / 2025", year:2025},
       {src:"images/work15.jpg", title:"君がいる星", caption:"透明水彩 / 2021", year:2021},
       {src:"images/work16.jpg", title:"ごろんねこ", caption:"アクリルガッシュ / 2022", year:2022},
-      {src:"images/work17.jpg", title:"おやすみに魔法をかけて", caption:"アクリルガッシュ / 2022", year:2022},
+      {src:"images/work17.jpg", title:"おやすみに魔法をかけて", caption:"アクリルガッシュ / 2022", year:2022}
     ];
 
-    // 年の降順で並び替え
-    images.sort((a, b) => b.year - a.year);
+    // 新しい順にソート
+    items.sort((a,b) => b.year - a.year);
 
-    const col1 = document.getElementById("col1");
-    const col2 = document.getElementById("col2");
+    // Masonry風配置（高さが低い列に追加していく）
+    items.forEach(item => {
+      const img = document.createElement("img");
+      img.src = item.src;
+      img.alt = item.title;
+      img.dataset.title = item.title;
+      img.dataset.caption = item.caption;
 
-    // Masonryアルゴリズム
-    window.onload = () => {
-      images.forEach(data => {
-        const img = document.createElement("img");
-        img.src = data.src;
-        img.alt = data.title;
-        img.dataset.title = data.title;
-        img.dataset.caption = data.caption;
-
-        // どちらの列が低いか判定して追加
+      // 画像読み込み後に高さを比較して配置
+      img.onload = () => {
         if (col1.offsetHeight <= col2.offsetHeight) {
           col1.appendChild(img);
         } else {
           col2.appendChild(img);
         }
+      };
 
-        img.addEventListener("click", () => {
-          const lightbox = document.getElementById("lightbox");
-          const lightboxImg = lightbox.querySelector("img");
-          const lightboxTitle = lightbox.querySelector("h3");
-          const lightboxCaption = lightbox.querySelector("p");
+      // ライトボックスイベント
+      img.addEventListener("click", () => {
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = lightbox.querySelector('img');
+        const lightboxTitle = lightbox.querySelector('h3');
+        const lightboxCaption = lightbox.querySelector('p');
 
-          lightbox.style.display = "flex";
-          lightboxImg.src = img.src;
-          lightboxTitle.textContent = img.dataset.title;
-          lightboxCaption.textContent = img.dataset.caption;
-        });
+        lightbox.style.display = 'flex';
+        lightboxImg.src = img.src;
+        lightboxTitle.textContent = img.dataset.title;
+        lightboxCaption.textContent = img.dataset.caption;
       });
-    };
+    });
 
-    // ライトボックス閉じる処理
+    // ライトボックスを閉じる処理
     const lightbox = document.getElementById('lightbox');
     lightbox.addEventListener('click', (e) => {
       if (e.target === e.currentTarget) {
