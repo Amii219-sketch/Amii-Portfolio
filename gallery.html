@@ -1,168 +1,76 @@
-<!doctype html>
-<html lang="ja">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Amii PORTFOLIO | Gallery</title>
-  <meta name="description" content="Amii — 透明水彩や顔彩を使った作品ギャラリー" />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
 
-  <style>
-    body {margin:0;font-family:"Noto Sans JP","Inter",sans-serif;background:#fff;color:#111;line-height:1.7;}
+  const images = [
+    {src:"images/work1.jpg", title:"優しい呼吸", caption:"透明水彩 / 2024", year:2024},
+    {src:"images/work2.jpg", title:"百万年の孤独", caption:"透明水彩 / 2025", year:2025},
+    {src:"images/work3.jpg", title:"胡蝶の夢", caption:"透明水彩 / 2025", year:2025},
+    {src:"images/work4.jpg", title:"帰郷", caption:"顔彩 / 2025", year:2025},
+    {src:"images/work5.jpg", title:"すべて私の記憶", caption:"透明水彩 / 2025", year:2025},
+    {src:"images/work6.jpg", title:"この悲しみを愛とは呼ばない", caption:"透明水彩 / 2025", year:2025},
+    {src:"images/work7.jpg", title:"好日", caption:"顔彩 / 2024", year:2024},
+    {src:"images/work8.jpg", title:"海に眠る", caption:"顔彩 / 2025", year:2025},
+    {src:"images/work9.jpg", title:"おやすみガオガオ", caption:"顔彩 / 2025", year:2025},
+    {src:"images/work10.jpg", title:"この香りを憶えている", caption:"透明水彩 / 2024", year:2024},
+    {src:"images/work11.jpg", title:"大丈夫", caption:"アクリルガッシュ / 2022", year:2022},
+    {src:"images/work12.jpg", title:"私が私であるために", caption:"透明水彩 / 2025", year:2025},
+    {src:"images/work13.jpg", title:"安全地帯", caption:"アクリルガッシュ・胡粉 / 2025", year:2025},
+    {src:"images/work14.jpg", title:"木星と猫", caption:"透明水彩 / 2025", year:2025},
+    {src:"images/work15.jpg", title:"君がいる星", caption:"透明水彩 / 2021", year:2021},
+    {src:"images/work16.jpg", title:"ごろんねこ", caption:"アクリルガッシュ / 2022", year:2022},
+    {src:"images/work17.jpg", title:"おやすみに魔法をかけて", caption:"アクリルガッシュ / 2022", year:2022},
+  ];
 
-    header {max-width:900px;margin:40px auto;padding:0 20px;}
-    .header-title {display:flex;align-items:center;gap:10px;}
-    .header-title h1 {font-size:30px;margin:0;font-weight:600;white-space:nowrap;}
-    .header-logo {height:60px;}
-    nav ul {list-style:none;padding:0;margin:20px 0;display:flex;gap:20px;flex-wrap:wrap;font-size:14px;}
-    nav a {text-decoration:none;color:#333;font-weight:500;}
-    nav a:hover {text-decoration:underline;}
+  // 年の降順で並び替え
+  images.sort((a, b) => b.year - a.year);
 
-    main {max-width:900px;margin:0 auto;padding:0 20px 60px;}
+  const col1 = document.getElementById("col1");
+  const col2 = document.getElementById("col2");
 
-    /* --- Masonry風ギャラリー（常に2列） --- */
-    .gallery {
-      display: flex;
-      gap: 20px;
-      align-items: flex-start;
-      justify-content: center;
-      margin-top: 20px;
-    }
-    .column {
-      flex: 1;
-      max-width: 50%; /* 常に2列固定 */
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-    .column img {
-      width: 100%;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: transform 0.2s;
-      display: block;
-    }
-    .column img:hover {transform:scale(1.02);}
+  function renderMasonry() {
+    col1.innerHTML = "";
+    col2.innerHTML = "";
 
-    /* ライトボックス */
-    #lightbox {position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);display:none;justify-content:center;align-items:center;flex-direction:column;padding:20px;box-sizing:border-box;z-index:1000;}
-    #lightbox img {max-width:90%;max-height:70%;object-fit:contain;border-radius:8px;display:block;}
-    #lightbox h3 {color:#fff;margin:15px 0 5px;font-size:18px;text-align:center;}
-    #lightbox p {color:#ccc;margin:0;font-size:14px;text-align:center;}
-
-    footer {text-align:center;font-size:13px;color:#666;padding:30px 0;border-top:1px solid #eee;}
-    footer a {color:#555;text-decoration:none;margin:0 8px;}
-    footer a:hover {text-decoration:underline;}
-  </style>
-</head>
-<body>
-  <header>
-    <div class="header-title">
-      <h1>Amii PORTFOLIO</h1>
-      <img src="images/logo.png" alt="飾りイラスト" class="header-logo">
-    </div>
-    <nav>
-      <ul>
-        <li><a href="index.html">home</a></li>
-        <li><a href="profile.html">profile</a></li>
-        <li><a href="gallery.html">gallery</a></li>
-        <li><a href="contact.html">contact</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <main>
-    <h2>Gallery</h2>
-    <div class="gallery" id="gallery">
-      <div class="column" id="col1"></div>
-      <div class="column" id="col2"></div>
-    </div>
-  </main>
-
-  <div id="lightbox">
-    <img src="" alt="">
-    <h3></h3>
-    <p></p>
-  </div>
-
-  <footer>
-    <p>© <span id="year"></span> Amii</p>
-  </footer>
-
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    const gallery = document.getElementById("gallery");
-    const col1 = document.getElementById("col1");
-    const col2 = document.getElementById("col2");
-
-    // 画像データ（作品リスト）
-    const items = [
-      {src:"images/work1.jpg", title:"優しい呼吸", caption:"透明水彩 / 2024", year:2024},
-      {src:"images/work2.jpg", title:"百万年の孤独", caption:"透明水彩 / 2025", year:2025},
-      {src:"images/work3.jpg", title:"胡蝶の夢", caption:"透明水彩 / 2025", year:2025},
-      {src:"images/work4.jpg", title:"帰郷", caption:"顔彩 / 2025", year:2025},
-      {src:"images/work5.jpg", title:"すべて私の記憶", caption:"透明水彩 / 2025", year:2025},
-      {src:"images/work6.jpg", title:"この悲しみを愛とは呼ばない", caption:"透明水彩 / 2025", year:2025},
-      {src:"images/work7.jpg", title:"好日", caption:"顔彩 / 2024", year:2024},
-      {src:"images/work8.jpg", title:"海に眠る", caption:"顔彩 / 2025", year:2025},
-      {src:"images/work9.jpg", title:"おやすみガオガオ", caption:"顔彩 / 2025", year:2025},
-      {src:"images/work10.jpg", title:"この香りを憶えている", caption:"透明水彩 / 2024", year:2024},
-      {src:"images/work11.jpg", title:"大丈夫", caption:"アクリルガッシュ / 2022", year:2022},
-      {src:"images/work12.jpg", title:"私が私であるために", caption:"透明水彩 / 2025", year:2025},
-      {src:"images/work13.jpg", title:"安全地帯", caption:"アクリルガッシュ・胡粉 / 2025", year:2025},
-      {src:"images/work14.jpg", title:"木星と猫", caption:"透明水彩 / 2025", year:2025},
-      {src:"images/work15.jpg", title:"君がいる星", caption:"透明水彩 / 2021", year:2021},
-      {src:"images/work16.jpg", title:"ごろんねこ", caption:"アクリルガッシュ / 2022", year:2022},
-      {src:"images/work17.jpg", title:"おやすみに魔法をかけて", caption:"アクリルガッシュ / 2022", year:2022}
-    ];
-
-    // 新しい順にソート
-    items.sort((a,b) => b.year - a.year);
-
-    // Masonry風配置（高さが低い列に追加していく）
-    items.forEach(item => {
+    images.forEach(data => {
       const img = document.createElement("img");
-      img.src = item.src;
-      img.alt = item.title;
-      img.dataset.title = item.title;
-      img.dataset.caption = item.caption;
+      img.src = data.src;
+      img.alt = data.title;
+      img.dataset.title = data.title;
+      img.dataset.caption = data.caption;
 
-      // 画像読み込み後に高さを比較して配置
-      img.onload = () => {
-        if (col1.offsetHeight <= col2.offsetHeight) {
-          col1.appendChild(img);
-        } else {
-          col2.appendChild(img);
-        }
-      };
+      if (col1.offsetHeight <= col2.offsetHeight) {
+        col1.appendChild(img);
+      } else {
+        col2.appendChild(img);
+      }
 
-      // ライトボックスイベント
       img.addEventListener("click", () => {
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = lightbox.querySelector('img');
-        const lightboxTitle = lightbox.querySelector('h3');
-        const lightboxCaption = lightbox.querySelector('p');
+        const lightbox = document.getElementById("lightbox");
+        const lightboxImg = lightbox.querySelector("img");
+        const lightboxTitle = lightbox.querySelector("h3");
+        const lightboxCaption = lightbox.querySelector("p");
 
-        lightbox.style.display = 'flex';
+        lightbox.style.display = "flex";
         lightboxImg.src = img.src;
         lightboxTitle.textContent = img.dataset.title;
         lightboxCaption.textContent = img.dataset.caption;
       });
     });
+  }
 
-    // ライトボックスを閉じる処理
-    const lightbox = document.getElementById('lightbox');
-    lightbox.addEventListener('click', (e) => {
-      if (e.target === e.currentTarget) {
-        lightbox.style.display = 'none';
-      }
-    });
-    document.addEventListener('keydown', (e) => {
-      if (e.key === "Escape") {
-        lightbox.style.display = 'none';
-      }
-    });
-  </script>
-</body>
-</html>
+  // すべての画像が読み込まれてから実行
+  window.addEventListener("load", renderMasonry);
+
+  // ライトボックス閉じる処理
+  const lightbox = document.getElementById('lightbox');
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === e.currentTarget) {
+      lightbox.style.display = 'none';
+    }
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === "Escape") {
+      lightbox.style.display = 'none';
+    }
+  });
+</script>
