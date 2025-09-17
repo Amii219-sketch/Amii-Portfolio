@@ -20,28 +20,16 @@
 
     main {max-width:900px;margin:0 auto;padding:0 20px 60px;}
 
+    /* タブ */
+    .tabs {display:flex;gap:20px;margin:20px 0;}
+    .tab {padding:8px 20px;border:1px solid #ccc;border-radius:20px;cursor:pointer;font-size:14px;}
+    .tab.active {background:#333;color:#fff;border-color:#333;}
+
     /* Masonry風ギャラリー */
-    .gallery {
-      display: flex;
-      gap: 20px;
-      align-items: flex-start;
-      justify-content: center;
-    }
-    .column {
-      flex: 1;
-      min-width: 0;
-      max-width: 50%;      /* 常に2列表示 */
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-    .gallery img {
-      width: 100%;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: transform 0.2s;
-      display: block;
-    }
+    .gallery {display:none;gap:20px;align-items:flex-start;justify-content:center;}
+    .gallery.active {display:flex;}
+    .column {flex:1;min-width:0;max-width:50%;display:flex;flex-direction:column;gap:20px;}
+    .gallery img {width:100%;border-radius:8px;cursor:pointer;transition:transform 0.2s;display:block;}
     .gallery img:hover {transform:scale(1.02);}
 
     /* ライトボックス */
@@ -73,9 +61,21 @@
 
   <main>
     <h2>Gallery</h2>
-    <div class="gallery" id="gallery">
-      <div class="column" id="col1"></div>
-      <div class="column" id="col2"></div>
+    <div class="tabs">
+      <div class="tab active" data-target="mainGallery">Main</div>
+      <div class="tab" data-target="subGallery">Sub</div>
+    </div>
+
+    <!-- Mainギャラリー -->
+    <div class="gallery active" id="mainGallery">
+      <div class="column" id="mainCol1"></div>
+      <div class="column" id="mainCol2"></div>
+    </div>
+
+    <!-- Subギャラリー -->
+    <div class="gallery" id="subGallery">
+      <div class="column" id="subCol1"></div>
+      <div class="column" id="subCol2"></div>
     </div>
   </main>
 
@@ -92,7 +92,8 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    const images = [
+    // Main用画像データ
+    const mainImages = [
       {src:"images/work1.jpg", title:"優しい呼吸", caption:"透明水彩 / 2024", year:2024},
       {src:"images/work2.jpg", title:"百万年の孤独", caption:"透明水彩 / 2025", year:2025},
       {src:"images/work3.jpg", title:"胡蝶の夢", caption:"透明水彩 / 2025", year:2025},
@@ -112,14 +113,30 @@
       {src:"images/work17.jpg", title:"おやすみに魔法をかけて", caption:"アクリルガッシュ / 2022", year:2022},
     ];
 
-    // 年の降順で並び替え
-    images.sort((a, b) => b.year - a.year);
+    // Sub用画像データ
+    const subImages = [
+      {src:"images/sub1.jpg", title:"カフェスケッチ", caption:"procreate / 2024", year:2024},
+      {src:"images/sub2.jpg", title:"カフェスケッチ", caption:"procreate / 2024", year:2024},
+      {src:"images/sub3.jpg", title:"ごはんスケッチ", caption:"procreate / 2024", year:2024},
+      {src:"images/sub4.jpg", title:"カフェスケッチ", caption:"procreate / 2024", year:2024},
+      {src:"images/sub5.jpg", title:"日記", caption:"procreate / 2024", year:2024},
+      {src:"images/sub6.jpg", title:"日記", caption:"procreate / 2024", year:2024},
+      {src:"images/sub7.jpg", title:"日記", caption:"procreate / 2024", year:2024},
+      {src:"images/sub8.jpg", title:"びわ湖スケッチ", caption:"procreate / 2024", year:2024},
+      {src:"images/sub9.jpg", title:"諸寄漁港スケッチ", caption:"procreate / 2024", year:2024},
+      {src:"images/sub10.jpg", title:"母の日イラスト", caption:"procreate / 2024", year:2024},
+      {src:"images/sub11.jpg", title:"クッキーイラスト", caption:"procreate / 2024", year:2024},
+      {src:"images/sub12.jpg", title:"日記", caption:"procreate / 2022", year:2022},
+      {src:"images/sub13.jpg", title:"日記", caption:"procreate / 2022", year:2022},
+      {src:"images/sub14.JPG", title:"パンイラスト", caption:"procreate / 2022", year:2022},
+      {src:"images/sub15.JPG", title:"エッセイイラスト", caption:"procreate / 2022", year:2022},
+    ];
 
-    const col1 = document.getElementById("col1");
-    const col2 = document.getElementById("col2");
-
-    // Masonryアルゴリズム
-    window.onload = () => {
+    // 共通レンダー関数
+    function renderMasonry(images, col1, col2) {
+      col1.innerHTML = "";
+      col2.innerHTML = "";
+      images.sort((a, b) => b.year - a.year);
       images.forEach(data => {
         const img = document.createElement("img");
         img.src = data.src;
@@ -127,7 +144,6 @@
         img.dataset.title = data.title;
         img.dataset.caption = data.caption;
 
-        // どちらの列が低いか判定して追加
         if (col1.offsetHeight <= col2.offsetHeight) {
           col1.appendChild(img);
         } else {
@@ -136,31 +152,43 @@
 
         img.addEventListener("click", () => {
           const lightbox = document.getElementById("lightbox");
-          const lightboxImg = lightbox.querySelector("img");
-          const lightboxTitle = lightbox.querySelector("h3");
-          const lightboxCaption = lightbox.querySelector("p");
-
           lightbox.style.display = "flex";
-          lightboxImg.src = img.src;
-          lightboxTitle.textContent = img.dataset.title;
-          lightboxCaption.textContent = img.dataset.caption;
+          lightbox.querySelector("img").src = img.src;
+          lightbox.querySelector("h3").textContent = img.dataset.title;
+          lightbox.querySelector("p").textContent = img.dataset.caption;
         });
       });
-    };
+    }
+
+    // 初期表示（Mainギャラリー）
+    window.addEventListener("load", () => {
+      renderMasonry(mainImages, document.getElementById("mainCol1"), document.getElementById("mainCol2"));
+    });
+
+    // タブ切り替え
+    document.querySelectorAll(".tab").forEach(tab => {
+      tab.addEventListener("click", () => {
+        document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+        tab.classList.add("active");
+        document.querySelectorAll(".gallery").forEach(g => g.classList.remove("active"));
+        document.getElementById(tab.dataset.target).classList.add("active");
+
+        if (tab.dataset.target === "mainGallery") {
+          renderMasonry(mainImages, document.getElementById("mainCol1"), document.getElementById("mainCol2"));
+        } else {
+          renderMasonry(subImages, document.getElementById("subCol1"), document.getElementById("subCol2"));
+        }
+      });
+    });
 
     // ライトボックス閉じる処理
     const lightbox = document.getElementById('lightbox');
     lightbox.addEventListener('click', (e) => {
-      if (e.target === e.currentTarget) {
-        lightbox.style.display = 'none';
-      }
+      if (e.target === e.currentTarget) lightbox.style.display = 'none';
     });
     document.addEventListener('keydown', (e) => {
-      if (e.key === "Escape") {
-        lightbox.style.display = 'none';
-      }
+      if (e.key === "Escape") lightbox.style.display = 'none';
     });
   </script>
 </body>
 </html>
-
