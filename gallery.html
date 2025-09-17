@@ -20,19 +20,20 @@
 
     main {max-width:900px;margin:0 auto;padding:0 20px 60px;}
 
-    /* --- ギャラリー部分（Grid版） --- */
+    /* --- ギャラリー部分（Pinterest風） --- */
     .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 20px;
-      margin-top: 20px;
+      column-count:3;
+      column-gap:20px;
+      margin-top:20px;
     }
     .gallery img {
-      width: 100%;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: transform 0.2s;
-      display: block;
+      width:100%;
+      margin-bottom:20px;
+      border-radius:8px;
+      cursor:pointer;
+      transition:transform 0.2s;
+      display:block;
+      break-inside: avoid; /* ← これで画像が途中で切れない */
     }
     .gallery img:hover {transform:scale(1.02);}
 
@@ -44,10 +45,7 @@
 
     /* --- レスポンシブ対応 --- */
     @media (max-width:600px) {
-      .gallery {
-        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-        gap: 10px;
-      }
+      .gallery {column-count:2;column-gap:10px;}
       .header-title h1 {font-size:30px;} /* ← スマホでも小さくならない */
     }
 
@@ -74,24 +72,28 @@
 
   <main>
     <h2>Gallery</h2>
-    <div class="gallery" id="gallery">
-      <img src="images/work1.jpg" alt="透明水彩作品『優しい呼吸』" data-title="優しい呼吸" data-caption="透明水彩 / 2024" data-year="2024" loading="lazy">
-      <img src="images/work2.jpg" alt="透明水彩作品『百万年の孤独』" data-title="百万年の孤独" data-caption="透明水彩 / 2025" data-year="2025" loading="lazy">
-      <img src="images/work3.jpg" alt="透明水彩作品『胡蝶の夢』" data-title="胡蝶の夢" data-caption="透明水彩 / 2025" data-year="2025" loading="lazy">
-      <img src="images/work4.jpg" alt="顔彩作品『帰郷』" data-title="帰郷" data-caption="顔彩 / 2025" data-year="2025" loading="lazy">
-      <img src="images/work5.jpg" alt="透明水彩作品『すべて私の記憶』" data-title="すべて私の記憶" data-caption="透明水彩 / 2025" data-year="2025" loading="lazy">
-      <img src="images/work6.jpg" alt="透明水彩作品『この悲しみを愛とは呼ばない』" data-title="この悲しみを愛とは呼ばない" data-caption="透明水彩 / 2025" data-year="2025" loading="lazy">
-      <img src="images/work7.jpg" alt="顔彩作品『好日』" data-title="好日" data-caption="顔彩 / 2024" data-year="2024" loading="lazy">
-      <img src="images/work8.jpg" alt="顔彩作品『海に眠る』" data-title="海に眠る" data-caption="顔彩 / 2025" data-year="2025" loading="lazy">
-      <img src="images/work9.jpg" alt="顔彩作品『おやすみガオガオ』" data-title="おやすみガオガオ" data-caption="顔彩 / 2025" data-year="2025" loading="lazy">
-      <img src="images/work10.jpg" alt="透明水彩作品『この香りを憶えている』" data-title="この香りを憶えている" data-caption="透明水彩 / 2024" data-year="2024" loading="lazy">
-      <img src="images/work11.jpg" alt="アクリルガッシュ作品『大丈夫』" data-title="大丈夫" data-caption="アクリルガッシュ / 2022" data-year="2022" loading="lazy">
-      <img src="images/work12.jpg" alt="透明水彩作品『私が私であるために』" data-title="私が私であるために" data-caption="透明水彩 / 2025" data-year="2025" loading="lazy">
-      <img src="images/work13.jpg" alt="アクリルガッシュ・胡粉作品『安全地帯』" data-title="安全地帯" data-caption="アクリルガッシュ・胡粉 / 2025" data-year="2025" loading="lazy">
-      <img src="images/work14.jpg" alt="透明水彩作品『木星と猫』" data-title="木星と猫" data-caption="透明水彩 / 2025" data-year="2025" loading="lazy">
-      <img src="images/work15.jpg" alt="透明水彩作品『君がいる星』" data-title="君がいる星" data-caption="透明水彩 / 2021" data-year="2021" loading="lazy">
-      <img src="images/work16.jpg" alt="アクリルガッシュ作品『ごろんねこ』" data-title="ごろんねこ" data-caption="アクリルガッシュ / 2022" data-year="2022" loading="lazy">
-      <img src="images/work17.jpg" alt="アクリルガッシュ作品『おやすみに魔法をかけて』" data-title="おやすみに魔法をかけて" data-caption="アクリルガッシュ / 2022" data-year="2022" loading="lazy">
+    <div class="gallery">
+      <!-- ↓ 新しい順に並べる！(2025 → 2024 → 2022 → 2021) -->
+      <img src="images/work2.jpg" alt="透明水彩作品『百万年の孤独』" data-title="百万年の孤独" data-caption="透明水彩 / 2025" loading="lazy">
+      <img src="images/work3.jpg" alt="透明水彩作品『胡蝶の夢』" data-title="胡蝶の夢" data-caption="透明水彩 / 2025" loading="lazy">
+      <img src="images/work4.jpg" alt="顔彩作品『帰郷』" data-title="帰郷" data-caption="顔彩 / 2025" loading="lazy">
+      <img src="images/work5.jpg" alt="透明水彩作品『すべて私の記憶』" data-title="すべて私の記憶" data-caption="透明水彩 / 2025" loading="lazy">
+      <img src="images/work6.jpg" alt="透明水彩作品『この悲しみを愛とは呼ばない』" data-title="この悲しみを愛とは呼ばない" data-caption="透明水彩 / 2025" loading="lazy">
+      <img src="images/work8.jpg" alt="顔彩作品『海に眠る』" data-title="海に眠る" data-caption="顔彩 / 2025" loading="lazy">
+      <img src="images/work9.jpg" alt="顔彩作品『おやすみガオガオ』" data-title="おやすみガオガオ" data-caption="顔彩 / 2025" loading="lazy">
+      <img src="images/work12.jpg" alt="透明水彩作品『私が私であるために』" data-title="私が私であるために" data-caption="透明水彩 / 2025" loading="lazy">
+      <img src="images/work13.jpg" alt="アクリルガッシュ・胡粉作品『安全地帯』" data-title="安全地帯" data-caption="アクリルガッシュ・胡粉 / 2025" loading="lazy">
+      <img src="images/work14.jpg" alt="透明水彩作品『木星と猫』" data-title="木星と猫" data-caption="透明水彩 / 2025" loading="lazy">
+
+      <img src="images/work1.jpg" alt="透明水彩作品『優しい呼吸』" data-title="優しい呼吸" data-caption="透明水彩 / 2024" loading="lazy">
+      <img src="images/work7.jpg" alt="顔彩作品『好日』" data-title="好日" data-caption="顔彩 / 2024" loading="lazy">
+      <img src="images/work10.jpg" alt="透明水彩作品『この香りを憶えている』" data-title="この香りを憶えている" data-caption="透明水彩 / 2024" loading="lazy">
+
+      <img src="images/work11.jpg" alt="アクリルガッシュ作品『大丈夫』" data-title="大丈夫" data-caption="アクリルガッシュ / 2022" loading="lazy">
+      <img src="images/work16.jpg" alt="アクリルガッシュ作品『ごろんねこ』" data-title="ごろんねこ" data-caption="アクリルガッシュ / 2022" loading="lazy">
+      <img src="images/work17.jpg" alt="アクリルガッシュ作品『おやすみに魔法をかけて』" data-title="おやすみに魔法をかけて" data-caption="アクリルガッシュ / 2022" loading="lazy">
+
+      <img src="images/work15.jpg" alt="透明水彩作品『君がいる星』" data-title="君がいる星" data-caption="透明水彩 / 2021" loading="lazy">
     </div>
   </main>
 
@@ -108,21 +110,13 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    const gallery = document.getElementById("gallery");
-    const items = Array.from(gallery.querySelectorAll("img"));
-
-    // 年の降順で並び替え
-    items.sort((a, b) => b.dataset.year - a.dataset.year);
-
-    gallery.innerHTML = "";
-    items.forEach(item => gallery.appendChild(item));
-
+    const images = document.querySelectorAll('.gallery img');
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = lightbox.querySelector('img');
     const lightboxTitle = lightbox.querySelector('h3');
     const lightboxCaption = lightbox.querySelector('p');
 
-    items.forEach(img => {
+    images.forEach(img => {
       img.addEventListener('click', () => {
         lightbox.style.display = 'flex';
         lightboxImg.src = img.src;
