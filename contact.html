@@ -67,6 +67,7 @@
     }
 
     /* フォーム */
+
     form {
       max-width: 500px;
       margin: 0 auto;
@@ -81,7 +82,10 @@
       border: 1px solid #ccc;
       border-radius: 4px;
       box-sizing: border-box;
-      font-family: inherit;
+    }
+
+    textarea {
+      resize: vertical;
     }
 
     button {
@@ -93,24 +97,22 @@
       margin-top: 10px;
       border-radius: 4px;
       font-size: 14px;
+      transition: background 0.2s;
     }
 
     button:hover {
       background: #555;
     }
 
-    /* 送信完了 */
-    #successMessage {
-      display: none;
-      max-width: 500px;
-      margin: 40px auto 0;
+    .contact-note {
+      text-align: center;
+      font-size: 13px;
+      color: #666;
+      margin-top: 15px;
     }
 
-    #confirmContent p {
-      margin-bottom: 20px;
-    }
+    /* スマホ */
 
-    /* スマホ向け */
     @media (max-width: 600px) {
       input,
       textarea {
@@ -157,10 +159,9 @@
   </header>
 
   <main>
-
     <h2>Contact</h2>
 
-    <form id="contactForm">
+    <form action="mailto:amii.world219@gmail.com" method="post" enctype="text/plain">
 
       <label>
         お名前<br>
@@ -187,16 +188,9 @@
 
     </form>
 
-    <!-- 送信完了メッセージ -->
-    <div id="successMessage">
-
-      <h3>送信ありがとうございました。</h3>
-
-      <p>以下の内容で送信しました。</p>
-
-      <div id="confirmContent"></div>
-
-    </div>
+    <p class="contact-note">
+      ※送信ボタンを押すとメールアプリが起動します
+    </p>
 
   </main>
 
@@ -222,50 +216,8 @@
   </footer>
 
   <script>
-
     document.getElementById("year").textContent =
       new Date().getFullYear();
-
-    const form =
-      document.getElementById("contactForm");
-
-    const successMessage =
-      document.getElementById("successMessage");
-
-    const confirmContent =
-      document.getElementById("confirmContent");
-
-    form.addEventListener("submit", function(e) {
-
-      e.preventDefault();
-
-      const name = form.name.value;
-      const email = form.email.value;
-      const message = form.message.value;
-
-      confirmContent.innerHTML = `
-        <p>
-          <strong>お名前</strong><br>
-          ${name}
-        </p>
-
-        <p>
-          <strong>メールアドレス</strong><br>
-          ${email}
-        </p>
-
-        <p>
-          <strong>メッセージ</strong><br>
-          ${message.replace(/\n/g, "<br>")}
-        </p>
-      `;
-
-      form.style.display = "none";
-
-      successMessage.style.display = "block";
-
-    });
-
   </script>
 
 </body>
