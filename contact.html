@@ -5,7 +5,9 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Amii PORTFOLIO | Contact</title>
   <meta name="description" content="Amii — お問い合わせフォーム" />
+
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
   <style>
     body {
       margin: 0;
@@ -20,20 +22,24 @@
       margin: 40px auto;
       padding: 0 20px;
     }
+
     .header-title {
       display: flex;
       align-items: center;
       gap: 10px;
     }
+
     .header-title h1 {
       font-size: 30px;
       margin: 0;
       font-weight: 600;
       white-space: nowrap;
     }
+
     .header-logo {
       height: 60px;
     }
+
     nav ul {
       list-style: none;
       padding: 0;
@@ -43,11 +49,13 @@
       flex-wrap: wrap;
       font-size: 14px;
     }
+
     nav a {
       text-decoration: none;
       color: #333;
       font-weight: 500;
     }
+
     nav a:hover {
       text-decoration: underline;
     }
@@ -63,7 +71,9 @@
       max-width: 500px;
       margin: 0 auto;
     }
-    input, textarea {
+
+    input,
+    textarea {
       width: 100%;
       padding: 10px;
       margin-top: 5px;
@@ -71,7 +81,9 @@
       border: 1px solid #ccc;
       border-radius: 4px;
       box-sizing: border-box;
+      font-family: inherit;
     }
+
     button {
       padding: 10px 20px;
       background: #333;
@@ -82,14 +94,28 @@
       border-radius: 4px;
       font-size: 14px;
     }
+
     button:hover {
       background: #555;
     }
 
-    /* スマホ向け調整 */
+    /* 送信完了 */
+    #successMessage {
+      display: none;
+      max-width: 500px;
+      margin: 40px auto 0;
+    }
+
+    #confirmContent p {
+      margin-bottom: 20px;
+    }
+
+    /* スマホ向け */
     @media (max-width: 600px) {
-      /* タイトル縮小を削除 */
-      input, textarea { font-size: 16px; }
+      input,
+      textarea {
+        font-size: 16px;
+      }
     }
 
     footer {
@@ -99,22 +125,27 @@
       padding: 30px 0;
       border-top: 1px solid #eee;
     }
+
     footer a {
       color: #555;
       text-decoration: none;
       margin: 0 8px;
     }
+
     footer a:hover {
       text-decoration: underline;
     }
   </style>
 </head>
+
 <body>
+
   <header>
     <div class="header-title">
       <h1>Amii PORTFOLIO</h1>
       <img src="images/logo.png" alt="飾りイラスト" class="header-logo">
     </div>
+
     <nav>
       <ul>
         <li><a href="index.html">home</a></li>
@@ -126,33 +157,116 @@
   </header>
 
   <main>
+
     <h2>Contact</h2>
-    <form action="mailto:amii.world219@gmail.com" method="post" enctype="text/plain">
-      <label>お名前<br>
+
+    <form id="contactForm">
+
+      <label>
+        お名前<br>
         <input type="text" name="name" required>
-      </label><br><br>
-      <label>メールアドレス<br>
+      </label>
+
+      <br><br>
+
+      <label>
+        メールアドレス<br>
         <input type="email" name="email" required>
-      </label><br><br>
-      <label>メッセージ<br>
+      </label>
+
+      <br><br>
+
+      <label>
+        メッセージ<br>
         <textarea name="message" rows="6" required></textarea>
-      </label><br><br>
+      </label>
+
+      <br><br>
+
       <button type="submit">送信</button>
+
     </form>
+
+    <!-- 送信完了メッセージ -->
+    <div id="successMessage">
+
+      <h3>送信ありがとうございました。</h3>
+
+      <p>以下の内容で送信しました。</p>
+
+      <div id="confirmContent"></div>
+
+    </div>
+
   </main>
 
   <footer>
-    <p>Contact: <a href="mailto:amii.world219@gmail.com">amii.world219@gmail.com</a></p>
     <p>
-      <a href="https://www.instagram.com/amii_219/?hl=ja" target="_blank">Instagram</a> |
-      <a href="https://x.com/Amii__0219" target="_blank">X</a>
+      Contact:
+      <a href="mailto:amii.world219@gmail.com">
+        amii.world219@gmail.com
+      </a>
     </p>
+
+    <p>
+      <a href="https://www.instagram.com/amii_219/?hl=ja" target="_blank">
+        Instagram
+      </a>
+      |
+      <a href="https://x.com/Amii__0219" target="_blank">
+        X
+      </a>
+    </p>
+
     <p>© <span id="year"></span> Amii</p>
   </footer>
 
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    const form =
+      document.getElementById("contactForm");
+
+    const successMessage =
+      document.getElementById("successMessage");
+
+    const confirmContent =
+      document.getElementById("confirmContent");
+
+    form.addEventListener("submit", function(e) {
+
+      e.preventDefault();
+
+      const name = form.name.value;
+      const email = form.email.value;
+      const message = form.message.value;
+
+      confirmContent.innerHTML = `
+        <p>
+          <strong>お名前</strong><br>
+          ${name}
+        </p>
+
+        <p>
+          <strong>メールアドレス</strong><br>
+          ${email}
+        </p>
+
+        <p>
+          <strong>メッセージ</strong><br>
+          ${message.replace(/\n/g, "<br>")}
+        </p>
+      `;
+
+      form.style.display = "none";
+
+      successMessage.style.display = "block";
+
+    });
+
   </script>
+
 </body>
 </html>
-
