@@ -19,6 +19,48 @@
     footer {text-align:center;font-size:13px;color:#666;padding:30px 0;border-top:1px solid #eee;}
     footer a {color:#555;text-decoration:none;margin:0 8px;}
     footer a:hover {text-decoration:underline;}
+    /* Profile */
+.profile-text {
+  margin-bottom: 50px;
+}
+
+.profile-text p {
+  margin: 0 0 14px;
+}
+
+/* Timeline */
+.timeline {
+  position: relative;
+  padding-left: 30px;
+  border-left: 1px solid #ddd;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 35px;
+}
+
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -36px;
+  top: 8px;
+  width: 10px;
+  height: 10px;
+  background: #111;
+  border-radius: 50%;
+}
+
+.timeline-year {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  letter-spacing: 0.05em;
+}
+
+.timeline-content {
+  color: #333;
+}
   </style>
 </head>
 <body>
@@ -38,16 +80,54 @@
   </header>
 
   <main>
-    <h2>Profile</h2>
-    <p>Amii（ｴﾐｰ）</p>
-    <p>兵庫出身京都在住イラストレーター</p>
-    <p>2019 個展「いちばんたいせつなことは、めにみえない」</p>
-    <p>2022 個展「君のいる星」</p>
-    <p>2025 個展「好日」</p>
-    <p>2026 第239回 ザ・チョイス入選</p>
-    <p>透明水彩や顔彩などのアナログ画材を使用して物語を感じられるイラストを制作</p>
-    <p>動物や植物が好き</p>
-  </main>
+
+  <h2>Profile</h2>
+
+  <section class="profile-text">
+    <p><strong>Amii（ｴﾐｰ）</strong></p>
+    <p>兵庫出身 京都在住 イラストレーター</p>
+
+    <p>
+      透明水彩や顔彩などのアナログ画材を使用し、
+      物語を感じられるイラストを制作。
+    </p>
+
+    <p>動物や植物が好き。</p>
+  </section>
+
+  <section class="timeline">
+
+    <div class="timeline-item">
+      <div class="timeline-year">2019</div>
+      <div class="timeline-content">
+        個展「いちばんたいせつなことは、めにみえない」
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-year">2022</div>
+      <div class="timeline-content">
+        個展「君のいる星」
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-year">2025</div>
+      <div class="timeline-content">
+        個展「好日」
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-year">2026</div>
+      <div class="timeline-content">
+        第239回 ザ・チョイス入選
+      </div>
+    </div>
+
+  </section>
+
+</main>
 
   <footer>
     <p>© <span id="year"></span> Amii</p>
