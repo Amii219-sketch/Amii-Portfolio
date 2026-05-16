@@ -155,39 +155,27 @@
 
     <form action="https://api.web3forms.com/submit" method="POST">
 
-      <!-- Web3Forms Access Key -->
-      <input type="hidden" name="access_key" value="b884e849-de4b-4126-82d5-c7dbf0b1f777">
+  <!-- Web3Forms設定 -->
+  <input type="hidden" name="access_key" value="b884e849-de4b-4126-82d5-c7dbf0b1f777">
 
-      <!-- 送信後ページ -->
-      <input type="hidden" name="redirect" value="https://amii-portfolio.vercel.app/thanks.html">
+  <!-- 送信後ページ -->
+  <input type="hidden" name="redirect" value="https://amii-portfolio.vercel.app/thanks.html">
 
-      <!-- 件名 -->
-      <input type="hidden" name="subject" value="Amii PORTFOLIO お問い合わせ">
+  <label>お名前<br>
+    <input type="text" name="name" required>
+  </label><br><br>
 
-      <label>
-        お名前<br>
-        <input type="text" name="name" required>
-      </label>
+  <label>メールアドレス<br>
+    <input type="email" name="email" required>
+  </label><br><br>
 
-      <br><br>
+  <label>メッセージ<br>
+    <textarea name="message" rows="6" required></textarea>
+  </label><br><br>
 
-      <label>
-        メールアドレス<br>
-        <input type="email" name="email" required>
-      </label>
+  <button type="submit">送信</button>
 
-      <br><br>
-
-      <label>
-        メッセージ<br>
-        <textarea name="message" rows="6" required></textarea>
-      </label>
-
-      <br><br>
-
-      <button type="submit">送信</button>
-
-    </form>
+</form>
   </main>
 
   <footer>
