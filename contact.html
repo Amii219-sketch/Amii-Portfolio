@@ -82,6 +82,7 @@
       border: 1px solid #ccc;
       border-radius: 4px;
       box-sizing: border-box;
+      font-family: inherit;
     }
 
     textarea {
@@ -103,15 +104,6 @@
     button:hover {
       background: #555;
     }
-
-    .contact-note {
-      text-align: center;
-      font-size: 13px;
-      color: #666;
-      margin-top: 15px;
-    }
-
-    /* スマホ */
 
     @media (max-width: 600px) {
       input,
@@ -161,7 +153,16 @@
   <main>
     <h2>Contact</h2>
 
-    <form action="mailto:amii.world219@gmail.com" method="post" enctype="text/plain">
+    <form action="https://api.web3forms.com/submit" method="POST">
+
+      <!-- Web3Forms Access Key -->
+      <input type="hidden" name="access_key" value="b884e849-de4b-4126-82d5-c7dbf0b1f777">
+
+      <!-- 送信後ページ -->
+      <input type="hidden" name="redirect" value="https://amii-portfolio.vercel.app/thanks.html">
+
+      <!-- 件名 -->
+      <input type="hidden" name="subject" value="Amii PORTFOLIO お問い合わせ">
 
       <label>
         お名前<br>
@@ -187,11 +188,6 @@
       <button type="submit">送信</button>
 
     </form>
-
-    <p class="contact-note">
-      ※送信ボタンを押すとメールアプリが起動します
-    </p>
-
   </main>
 
   <footer>
@@ -203,13 +199,8 @@
     </p>
 
     <p>
-      <a href="https://www.instagram.com/amii_219/?hl=ja" target="_blank">
-        Instagram
-      </a>
-      |
-      <a href="https://x.com/Amii__0219" target="_blank">
-        X
-      </a>
+      <a href="https://www.instagram.com/amii_219/?hl=ja" target="_blank">Instagram</a> |
+      <a href="https://x.com/Amii__0219" target="_blank">X</a>
     </p>
 
     <p>© <span id="year"></span> Amii</p>
