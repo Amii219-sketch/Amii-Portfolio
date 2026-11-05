@@ -1,1 +1,148 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Amii PORTFOLIO</title>
+  <meta name="description" content="Amii —透明水彩や顔彩などのアナログ画材を使用して物語を感じられるイラストを制作" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
+  <style>
+    body {
+      margin: 0;
+      font-family: "Noto Sans JP", "Inter", sans-serif;
+      background: #fff;
+      color: #111;
+      line-height: 1.7;
+    }
+
+    header {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .header-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .header-title h1 {
+      font-size: 30px;
+      margin: 0;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .header-logo {
+      height: 60px;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      font-size: 14px;
+    }
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 20px 60px;
+    }
+
+    /* スライドショー */
+    .slideshow {
+      position: relative;
+      width: 100%;
+      max-width: 900px;
+      height: auto;
+      overflow: hidden;
+    }
+    .slideshow img {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      opacity: 0;
+      transition: opacity 2.5s ease-in-out;
+    }
+    .slideshow img.active {
+      opacity: 1;
+      position: relative;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 13px;
+      color: #666;
+      padding: 30px 0;
+      border-top: 1px solid #eee;
+    }
+    footer a {
+      color: #555;
+      text-decoration: none;
+      margin: 0 8px;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-title">
+      <h1>Amii PORTFOLIO</h1>
+      <img src="images/logo.png" alt="飾りイラスト" class="header-logo">
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">home</a></li>
+        <li><a href="profile.html">profile</a></li>
+        <li><a href="gallery.html">gallery</a></li>
+        <li><a href="contact.html">contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- スライドショー -->
+    <div class="slideshow">
+      <img src="images/work1.jpg" class="active" alt="優しい呼吸">
+      <img src="images/work18.jpg" alt="作品18">
+      <img src="images/work3.jpg" alt="胡蝶の夢">
+    </div>
+  </main>
+
+  <footer>
+    <p>Contact: <a href="mailto:amii.world219@gmail.com">amii.world219@gmail.com</a></p>
+    <p>
+      <a href="https://www.instagram.com/amii_219/?hl=ja" target="_blank">Instagram</a> |
+      <a href="https://x.com/Amii__0219" target="_blank">X</a>
+    </p>
+    <p>© <span id="year"></span> Amii</p>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // スライドショー
+    const slides = document.querySelectorAll('.slideshow img');
+    let current = 0;
+    setInterval(() => {
+      slides[current].classList.remove('active');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('active');
+    }, 7000);
+  </script>
+</body>
+</html>
