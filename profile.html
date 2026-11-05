@@ -1,104 +1,65 @@
 <!doctype html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Amii PORTFOLIO | Profile</title>
-  <meta name="description" content="Amii — イラストレーターのプロフィール" />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-  <style>
-    body {margin:0;font-family:"Noto Sans JP","Inter",sans-serif;background:#fff;color:#111;line-height:1.7;}
-    header {max-width:900px;margin:40px auto;padding:0 20px;}
-    .header-title {display:flex;align-items:center;gap:10px;}
-    .header-title h1 {font-size:30px;margin:0;font-weight:600;white-space:nowrap;}
-    .header-logo {height:60px;}
-    nav ul {list-style:none;padding:0;margin:20px 0;display:flex;gap:20px;flex-wrap:wrap;font-size:14px;}
-    nav a {text-decoration:none;color:#333;font-weight:500;}
-    nav a:hover {text-decoration:underline;}
-    main {max-width:900px;margin:0 auto;padding:0 20px 60px;}
-    footer {text-align:center;font-size:13px;color:#666;padding:30px 0;border-top:1px solid #eee;}
-    footer a {color:#555;text-decoration:none;margin:0 8px;}
-    footer a:hover {text-decoration:underline;}
-    /* Profile */
-.profile-text {
-  margin-bottom: 50px;
-}
-
-.profile-text p {
-  margin: 0 0 14px;
-}
-
-/* Timeline */
-.timeline {
-  position: relative;
-  padding-left: 30px;
-  border-left: 1px solid #ddd;
-}
-
-.timeline-item {
-  position: relative;
-  margin-bottom: 35px;
-}
-
-.timeline-item::before {
-  content: "";
-  position: absolute;
-  left: -36px;
-  top: 8px;
-  width: 10px;
-  height: 10px;
-  background: #111;
-  border-radius: 50%;
-}
-
-.timeline-year {
-  font-size: 14px;
-  font-weight: 700;
-  margin-bottom: 6px;
-  letter-spacing: 0.05em;
-}
-
-.timeline-content {
-  color: #333;
-}
-  </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Amii PORTFOLIO | Profile</title>
+    <meta name="description" content="Amii — イラストレーターのプロフィール" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {margin:0;font-family:"Noto Sans JP","Inter",sans-serif;background:#fff;color:#111;line-height:1.7;}
+        header {max-width:900px;margin:40px auto;padding:0 20px;}
+        .header-title {display:flex;align-items:center;gap:10px;}
+        .header-title h1 {font-size:30px;margin:0;font-weight:600;white-space:nowrap;}
+        .header-logo {height:60px;}
+        nav ul {list-style:none;padding:0;margin:20px 0;display:flex;gap:20px;flex-wrap:wrap;font-size:14px;}
+        nav a {text-decoration:none;color:#333;font-weight:500;}
+        nav a:hover {text-decoration:underline;}
+        main {max-width:900px;margin:0 auto;padding:0 20px 60px;}
+        footer {text-align:center;font-size:13px;color:#666;padding:30px 0;border-top:1px solid #eee;}
+        footer a {color:#555;text-decoration:none;margin:0 8px;}
+        footer a:hover {text-decoration:underline;}
+        /* Profile */
+        .profile-text {margin-bottom: 50px; }
+        .profile-text p {margin: 0 0 14px; }
+        /* Timeline */
+        .timeline {position: relative; padding-left: 30px; border-left: 1px solid #ddd; }
+        .timeline-item {position: relative; margin-bottom: 35px; }
+        .timeline-item::before {content: ""; position: absolute; left: -36px; top: 8px; width: 10px; height: 10px; background: #111; border-radius: 50%; }
+        .timeline-year {font-size: 14px; font-weight: 700; margin-bottom: 6px; letter-spacing: 0.05em; }
+        .timeline-content {color: #333; }
+        .timeline-content p {margin: 0 0 8px; }
+    </style>
 </head>
 <body>
-  <header>
-    <div class="header-title">
-      <h1>Amii PORTFOLIO</h1>
-      <img src="images/logo.png" alt="飾りイラスト" class="header-logo">
-    </div>
-    <nav>
-      <ul>
-        <li><a href="index.html">home</a></li>
-        <li><a href="profile.html">profile</a></li>
-        <li><a href="gallery.html">gallery</a></li>
-        <li><a href="works.html">works</a></li>
-        <li><a href="contact.html">contact</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <main>
-
-  <h2>Profile</h2>
-
-  <section class="profile-text">
-    <p><strong>Amii（ｴﾐｰ）</strong></p>
-    <p>兵庫出身 京都在住 イラストレーター</p>
-
-    <p>
-      透明水彩や顔彩などのアナログ画材を使用し、
-      物語を感じられるイラストを制作。
-    </p>
-
-    <p>動物や植物が好き。</p>
-  </section>
-
-  <section class="timeline">
-
-<div class="timeline-item">
+    <header>
+        <div class="header-title">
+            <h1>Amii PORTFOLIO</h1>
+            <img src="images/logo.png" alt="飾りイラスト" class="header-logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">home</a></li>
+                <li><a href="profile.html">profile</a></li>
+                <li><a href="gallery.html">gallery</a></li>
+                <li><a href="works.html">works</a></li>
+                <li><a href="contact.html">contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Profile</h2>
+        <section class="profile-text">
+            <p><strong>Amii（ｴﾐｰ）</strong></p>
+            <p>兵庫出身 京都在住 イラストレーター</p>
+            <p>
+                透明水彩や顔彩などのアナログ画材を使用し、
+                物語を感じられるイラストを制作。
+            </p>
+            <p>動物や植物が好き。</p>
+        </section>
+        <section class="timeline">
+            <div class="timeline-item">
                 <div class="timeline-year">2019</div>
                 <div class="timeline-content">
                     <p>個展『いちばんたいせつなことは、めにみえない』</p>
@@ -126,21 +87,17 @@
                 <div class="timeline-year">2026</div>
                 <div class="timeline-content">
                     <p>第239回 ザ・チョイス入選</p>
-                    <p>玄光社 ファッション・イラストレーションファイル2026 掲載</p>
-                    <p>翔泳社 ILLUSTRATION2027 掲載</p>
+                    <p>玄光社ファッション・イラストレーションファイル2026掲載</p>
+                    <p>翔泳社ILLUSTRATION2027掲載</p>
                 </div>
             </div>
-
-  </section>
-
-</main>
-
-  <footer>
-    <p>© <span id="year"></span> Amii</p>
-  </footer>
-
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+        </section>
+    </main>
+    <footer>
+        <p>© <span id="year"></span> Amii</p>
+    </footer>
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>
