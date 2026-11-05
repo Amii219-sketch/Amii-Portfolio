@@ -5,15 +5,16 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Works - Amii PORTFOLIO</title>
     <meta name="description" content="Amii — Works（実績紹介）" />
-    <!-- Google Fonts: 英語用(Inter)と、洗練された日本語用(Noto Serif JP または 游明朝風)を読み込み -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Noto+Serif+JP:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Google Fonts: 英語用(Inter)と、洗練されたきれいなゴシック体(Noto Sans JP)を読み込み -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
-            font-family: "Noto Serif JP", "Inter", "Yu Mincho", YuMincho, serif;
+            font-family: "Noto Sans JP", "Inter", sans-serif;
             background: #fff;
             color: #111;
             line-height: 1.8;
+            letter-spacing: 0.03em;
         }
         header {
             max-width: 900px;
@@ -65,9 +66,9 @@
             margin-bottom: 80px;
         }
         .work-title {
-            font-family: "Noto Serif JP", serif; /* おしゃれで洗練された明朝体風 */
-            font-size: 20px;
-            font-weight: 400;
+            font-family: "Noto Sans JP", sans-serif;
+            font-size: 17px;
+            font-weight: 500;
             letter-spacing: 0.05em;
             margin-bottom: 25px;
             border-bottom: 1px solid #eee;
@@ -140,8 +141,8 @@
             <ul>
                 <li><a href="index.html">home</a></li>
                 <li><a href="profile.html">profile</a></li>
-                <li><a href="gallery.html">gallery</a></li>
                 <li><a href="works.html">works</a></li>
+                <li><a href="gallery.html">gallery</a></li>
                 <li><a href="contact.html">contact</a></li>
             </ul>
         </nav>
@@ -149,24 +150,36 @@
 
     <main>
         <!-- 作品1つ目：commons&sense -->
-        <div class="work-section" id="work1">
+        <div class="work-section">
             <h2 class="work-title">commons&sense ISSUE71 ファッションストーリーイラスト全16p</h2>
             
-            <!-- 上部に大きく表示されるメイン画像 -->
             <div class="main-display">
-                <img id="current-image" src="images/Commons&sense1.jpg" alt="commons&sense メイン画像">
+                <img id="current-image-1" src="images/Commons&sense1.jpg" alt="commons&sense メイン画像">
             </div>
             
-            <!-- 下に小さく並ぶサムネイル一覧（クリックすると上の画像が切り替わります） -->
             <div class="thumbnail-list">
-                <img src="images/Commons&sense1.jpg" alt="1" class="active" onclick="changeImage(this, 'images/Commons&sense1.jpg')">
-                <img src="images/Commons&sense2.jpg" alt="2" onclick="changeImage(this, 'images/Commons&sense2.jpg')">
-                <img src="images/Commons&sense3.jpg" alt="3" onclick="changeImage(this, 'images/Commons&sense3.jpg')">
-                <img src="images/Commons&sense4.jpg" alt="4" onclick="changeImage(this, 'images/Commons&sense4.jpg')">
-                <img src="images/Commons&sense5.jpg" alt="5" onclick="changeImage(this, 'images/Commons&sense5.jpg')">
-                <img src="images/Commons&sense6.jpg" alt="6" onclick="changeImage(this, 'images/Commons&sense6.jpg')">
-                <img src="images/Commons&sense7.jpg" alt="7" onclick="changeImage(this, 'images/Commons&sense7.jpg')">
-                <img src="images/Commons&sense8.jpg" alt="8" onclick="changeImage(this, 'images/Commons&sense8.jpg')">
+                <img src="images/Commons&sense1.jpg" alt="1" class="active" onclick="changeImage(this, 'images/Commons&sense1.jpg', 'current-image-1')">
+                <img src="images/Commons&sense2.jpg" alt="2" onclick="changeImage(this, 'images/Commons&sense2.jpg', 'current-image-1')">
+                <img src="images/Commons&sense3.jpg" alt="3" onclick="changeImage(this, 'images/Commons&sense3.jpg', 'current-image-1')">
+                <img src="images/Commons&sense4.jpg" alt="4" onclick="changeImage(this, 'images/Commons&sense4.jpg', 'current-image-1')">
+                <img src="images/Commons&sense5.jpg" alt="5" onclick="changeImage(this, 'images/Commons&sense5.jpg', 'current-image-1')">
+                <img src="images/Commons&sense6.jpg" alt="6" onclick="changeImage(this, 'images/Commons&sense6.jpg', 'current-image-1')">
+                <img src="images/Commons&sense7.jpg" alt="7" onclick="changeImage(this, 'images/Commons&sense7.jpg', 'current-image-1')">
+                <img src="images/Commons&sense8.jpg" alt="8" onclick="changeImage(this, 'images/Commons&sense8.jpg', 'current-image-1')">
+            </div>
+        </div>
+
+        <!-- 作品2つ目：寝ながら学べる因果推論 -->
+        <div class="work-section">
+            <h2 class="work-title">講談社『寝ながら学べる因果推論』装画/カットイラスト</h2>
+            
+            <div class="main-display">
+                <img id="current-image-2" src="images/inga1.jpg" alt="寝ながら学べる因果推論 メイン画像">
+            </div>
+            
+            <div class="thumbnail-list">
+                <img src="images/inga1.jpg" alt="1" class="active" onclick="changeImage(this, 'images/inga1.jpg', 'current-image-2')">
+                <img src="images/inga2.jpg" alt="2" onclick="changeImage(this, 'images/inga2.jpg', 'current-image-2')">
             </div>
         </div>
     </main>
@@ -183,15 +196,13 @@
     <script>
         document.getElementById("year").textContent = new Date().getFullYear();
 
-        // 小さい画像をクリックしたときに上のメイン画像を切り替える仕組み
-        function changeImage(element, imageSrc) {
+        // 画像切り替えの仕組み
+        function changeImage(element, imageSrc, targetId) {
             const section = element.closest('.work-section');
-            const mainImg = section.querySelector('#current-image');
+            const mainImg = section.querySelector('#' + targetId);
             
-            // メイン画像のソースを切り替え
             mainImg.src = imageSrc;
 
-            // サムネイルの枠線（active）の切り替え
             const thumbnails = section.querySelectorAll('.thumbnail-list img');
             thumbnails.forEach(img => img.classList.remove('active'));
             element.classList.add('active');
