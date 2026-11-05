@@ -5,14 +5,15 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Works - Amii PORTFOLIO</title>
     <meta name="description" content="Amii — Works（実績紹介）" />
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Google Fonts: 英語用(Inter)と、洗練された日本語用(Noto Serif JP または 游明朝風)を読み込み -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Noto+Serif+JP:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
-            font-family: "Noto Sans JP", "Inter", sans-serif;
+            font-family: "Noto Serif JP", "Inter", "Yu Mincho", YuMincho, serif;
             background: #fff;
             color: #111;
-            line-height: 1.7;
+            line-height: 1.8;
         }
         header {
             max-width: 900px;
@@ -25,10 +26,12 @@
             gap: 10px;
         }
         .header-title h1 {
+            font-family: "Inter", sans-serif;
             font-size: 30px;
             margin: 0;
             font-weight: 600;
             white-space: nowrap;
+            letter-spacing: -0.02em;
         }
         .header-logo {
             height: 60px;
@@ -41,6 +44,7 @@
             gap: 20px;
             flex-wrap: wrap;
             font-size: 14px;
+            font-family: "Inter", sans-serif;
         }
         nav a {
             text-decoration: none;
@@ -53,58 +57,59 @@
         main {
             max-width: 900px;
             margin: 0 auto;
-            padding: 0 20px 60px;
+            padding: 0 20px 80px;
         }
         
         /* Worksスタイル */
         .work-section {
-            margin-bottom: 60px;
+            margin-bottom: 80px;
         }
         .work-title {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 20px;
+            font-family: "Noto Serif JP", serif; /* おしゃれで洗練された明朝体風 */
+            font-size: 20px;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            margin-bottom: 25px;
             border-bottom: 1px solid #eee;
-            padding-bottom: 8px;
+            padding-bottom: 12px;
         }
-        /* サムネイル（メイン画像） */
-        .work-thumbnail {
+        
+        /* メイン画像（大きく表示する場所） */
+        .main-display {
             width: 100%;
-            max-width: 450px;
-            cursor: pointer;
-            display: block;
-            margin-bottom: 15px;
-            transition: opacity 0.3s;
+            max-width: 600px;
+            margin-bottom: 20px;
         }
-        .work-thumbnail:hover {
-            opacity: 0.8;
-        }
-        /* サブ画像（最初は隠しておく） */
-        .sub-images {
-            display: none;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
-        }
-        .sub-images img {
+        .main-display img {
             width: 100%;
             height: auto;
             display: block;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
         }
-        /* 開閉ボタン */
-        .toggle-btn {
-            background: none;
-            border: 1px solid #333;
-            padding: 8px 16px;
-            font-family: inherit;
-            font-size: 14px;
+
+        /* 小さく並べるサムネイル画像リスト */
+        .thumbnail-list {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            max-width: 600px;
+        }
+        .thumbnail-list img {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
             cursor: pointer;
-            margin-top: 10px;
-            transition: background 0.3s, color 0.3s;
+            opacity: 0.6;
+            transition: opacity 0.2s, transform 0.2s;
+            border: 1px solid #eee;
         }
-        .toggle-btn:hover {
-            background: #333;
-            color: #fff;
+        .thumbnail-list img:hover {
+            opacity: 1;
+        }
+        /* 今選ばれている画像の目印 */
+        .thumbnail-list img.active {
+            opacity: 1;
+            border-color: #111;
         }
 
         footer {
@@ -113,6 +118,7 @@
             color: #666;
             padding: 30px 0;
             border-top: 1px solid #eee;
+            font-family: "Inter", sans-serif;
         }
         footer a {
             color: #555;
@@ -143,25 +149,24 @@
 
     <main>
         <!-- 作品1つ目：commons&sense -->
-        <div class="work-section">
+        <div class="work-section" id="work1">
             <h2 class="work-title">commons&sense ISSUE71 ファッションストーリーイラスト全16p</h2>
             
-            <!-- サムネイル画像（クリックまたはボタンで他の画像が開きます） -->
-            <img src="images/Commons&sense1.jpg" alt="commons&sense サムネイル" class="work-thumbnail" onclick="toggleImages(this)">
-            
-            <div>
-                <button class="toggle-btn" onclick="toggleImages(this)">ほかの画像（全16p）を見る</button>
+            <!-- 上部に大きく表示されるメイン画像 -->
+            <div class="main-display">
+                <img id="current-image" src="images/Commons&sense1.jpg" alt="commons&sense メイン画像">
             </div>
-
-            <!-- 2枚目〜8枚目の画像（ここに残りの画像が並びます） -->
-            <div class="sub-images">
-                <img src="images/Commons&sense2.jpg" alt="commons&sense 2">
-                <img src="images/Commons&sense3.jpg" alt="commons&sense 3">
-                <img src="images/Commons&sense4.jpg" alt="commons&sense 4">
-                <img src="images/Commons&sense5.jpg" alt="commons&sense 5">
-                <img src="images/Commons&sense6.jpg" alt="commons&sense 6">
-                <img src="images/Commons&sense7.jpg" alt="commons&sense 7">
-                <img src="images/Commons&sense8.jpg" alt="commons&sense 8">
+            
+            <!-- 下に小さく並ぶサムネイル一覧（クリックすると上の画像が切り替わります） -->
+            <div class="thumbnail-list">
+                <img src="images/Commons&sense1.jpg" alt="1" class="active" onclick="changeImage(this, 'images/Commons&sense1.jpg')">
+                <img src="images/Commons&sense2.jpg" alt="2" onclick="changeImage(this, 'images/Commons&sense2.jpg')">
+                <img src="images/Commons&sense3.jpg" alt="3" onclick="changeImage(this, 'images/Commons&sense3.jpg')">
+                <img src="images/Commons&sense4.jpg" alt="4" onclick="changeImage(this, 'images/Commons&sense4.jpg')">
+                <img src="images/Commons&sense5.jpg" alt="5" onclick="changeImage(this, 'images/Commons&sense5.jpg')">
+                <img src="images/Commons&sense6.jpg" alt="6" onclick="changeImage(this, 'images/Commons&sense6.jpg')">
+                <img src="images/Commons&sense7.jpg" alt="7" onclick="changeImage(this, 'images/Commons&sense7.jpg')">
+                <img src="images/Commons&sense8.jpg" alt="8" onclick="changeImage(this, 'images/Commons&sense8.jpg')">
             </div>
         </div>
     </main>
@@ -178,19 +183,18 @@
     <script>
         document.getElementById("year").textContent = new Date().getFullYear();
 
-        // 画像やボタンを押したときに、残りの画像を表示・非表示にする仕組み
-        function toggleImages(element) {
+        // 小さい画像をクリックしたときに上のメイン画像を切り替える仕組み
+        function changeImage(element, imageSrc) {
             const section = element.closest('.work-section');
-            const subImages = section.querySelector('.sub-images');
-            const btn = section.querySelector('.toggle-btn');
+            const mainImg = section.querySelector('#current-image');
+            
+            // メイン画像のソースを切り替え
+            mainImg.src = imageSrc;
 
-            if (subImages.style.display === 'grid') {
-                subImages.style.display = 'none';
-                btn.textContent = 'ほかの画像（全16p）を見る';
-            } else {
-                subImages.style.display = 'grid';
-                btn.textContent = '画像を閉じる';
-            }
+            // サムネイルの枠線（active）の切り替え
+            const thumbnails = section.querySelectorAll('.thumbnail-list img');
+            thumbnails.forEach(img => img.classList.remove('active'));
+            element.classList.add('active');
         }
     </script>
 </body>
