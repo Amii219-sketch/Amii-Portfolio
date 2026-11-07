@@ -5,16 +5,14 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Works - Amii PORTFOLIO</title>
     <meta name="description" content="Amii — Works（実績紹介）" />
-    <!-- Google Fonts: 英語用(Inter)と、洗練されたきれいなゴシック体(Noto Sans JP)を読み込み -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
             font-family: "Noto Sans JP", "Inter", sans-serif;
             background: #fff;
             color: #111;
-            line-height: 1.8;
-            letter-spacing: 0.03em;
+            line-height: 1.7;
         }
         header {
             max-width: 900px;
@@ -47,7 +45,7 @@
         nav a {
             text-decoration: none;
             color: #333;
-            font-weight: 500;
+            font-weight: normal;
         }
         nav a:hover {
             text-decoration: underline;
@@ -55,21 +53,19 @@
         main {
             max-width: 900px;
             margin: 0 auto;
-            padding: 0 20px 80px;
+            padding: 0 20px 60px;
         }
         
         /* Worksスタイル */
         .work-section {
-            margin-bottom: 80px;
+            margin-bottom: 60px;
         }
         .work-title {
-            font-family: "Noto Sans JP", sans-serif;
-            font-size: 17px;
-            font-weight: 500;
-            letter-spacing: 0.05em;
-            margin-bottom: 25px;
+            font-size: 18px;
+            font-weight: 400;
+            margin-bottom: 20px;
             border-bottom: 1px solid #eee;
-            padding-bottom: 12px;
+            padding-bottom: 8px;
         }
         
         /* メイン画像（大きく表示する場所） */
@@ -82,7 +78,6 @@
             width: 100%;
             height: auto;
             display: block;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
         }
 
         /* 小さく並べるサムネイル画像リスト */
@@ -98,7 +93,7 @@
             object-fit: cover;
             cursor: pointer;
             opacity: 0.6;
-            transition: opacity 0.2s, transform 0.2s;
+            transition: opacity 0.2s;
             border: 1px solid #eee;
         }
         .thumbnail-list img:hover {
